@@ -1,4 +1,4 @@
-/* const mongoose = require("mongoose");
+const mongoose = require("mongoose");
 
 // designing the database schema for mongodb
 const todoSchema = new mongoose.Schema({
@@ -14,4 +14,4 @@ const todoSchema = new mongoose.Schema({
 })
 
 
-module.exports = mongoose.model("Todo", todoSchema) */
+module.exports = mongoose.model("Todo", todoSchema)
