@@ -11,3 +11,11 @@ exports.createTodo = async (req,res) => {
         res.status(500).send("server erroR")
     }
 }
+exports.getTodo = async (req,res) => {
+    try {
+        const todo = await Todo.find();
+        return res.json(todo)
+    } catch (error) {
+        console.log(error)
+    }
+}
