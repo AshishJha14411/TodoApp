@@ -1,4 +1,4 @@
-/* const Todo = require("../models/todoModel")
+const Todo = require("../models/todoModel")
 
 exports.createTodo = async (req,res) => {
     try {
@@ -10,4 +10,4 @@ exports.createTodo = async (req,res) => {
         console.log(error)
         res.status(500).send("server erroR")
     }
-} */
+}
