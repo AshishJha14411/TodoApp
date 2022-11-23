@@ -1,4 +1,4 @@
-/* const express =require("express")
+const express =require("express")
 
 const {createTodo} = require("../controllers/todoControllers")
 const router = express.Router();
@@ -9,4 +9,4 @@ router.post("/", (req,res) => {
 router.post("/createTodo", createTodo)
 
 
-module.exports = router; */
+module.exports = router;
