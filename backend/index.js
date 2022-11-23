@@ -1,4 +1,4 @@
-/* require("dotenv").config();
+require("dotenv").config();
 const { json } = require("express");
 const express = require("express");
 const connectToDB = require("./config/db");
@@ -12,4 +12,3 @@ app.use(express.urlencoded({ extended: true }));
 connectToDB();
 app.use("/", todoRoutes)
 module.exports = app;
- */

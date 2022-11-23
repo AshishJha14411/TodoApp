@@ -1,4 +1,4 @@
-/* const mongoose = require("mongoose")
+const mongoose = require("mongoose")
 //connecting to the database core code
 const connectToDB = () => {
     mongoose.connect(process.env.MONGO_URI).then((conn) => {
@@ -9,4 +9,4 @@ const connectToDB = () => {
     })
 }
 
-module.exports = connectToDB */
+module.exports = connectToDB
