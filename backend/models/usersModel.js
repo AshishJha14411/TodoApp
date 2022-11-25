@@ -6,15 +6,22 @@ const userSchema = new mongoose.Schema({
         type: String,
         require: true,
         minLength: 10,
-        is
+
     },
     password: {
         type: String,
         requrie: true,
     },
-    name:{
+    firstname:{
         type: String,
+        requrie: true,
         minLength: 4,
+    },
+    lastname:{
+        type: String
+    },
+    token: {
+        type: String
     }
 })
 
