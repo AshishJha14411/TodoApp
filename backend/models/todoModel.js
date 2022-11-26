@@ -7,8 +7,8 @@ const todoSchema = new mongoose.Schema({
         require: true,
         maxLength: 60
     },
-    list: {
-        type: String,
+    task: {
+        type: [String],
     }
     //add date
 })
