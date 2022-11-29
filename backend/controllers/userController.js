@@ -1,4 +1,4 @@
-const User = require("../models/usersModel");
+/* const User = require("../models/usersModel");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const config = require( '../config/index')
@@ -72,3 +72,4 @@ exports.login = async (req, res) => {
     res.send("SOME ERROR")
   }
 };
+ */
