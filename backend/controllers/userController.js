@@ -1,7 +1,7 @@
 const User = require("../models/usersModel");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-
+const config = require( '../config/index')
 exports.register = async (req, res) => {
   try {
     const { email, password, firstname, lastname } = req.body;
@@ -26,7 +26,7 @@ exports.register = async (req, res) => {
         id: user._id,
         email,
       },
-      process.env.SECRET_KEY,
+      config.JWT_SECRET,
       { expiresIn: "1h" }
     );
     user.token = token;
@@ -41,7 +41,7 @@ exports.login = async (req, res) => {
   try {
     //collected information
     const { email, password } = req.body;
-
+    console.log(process.env.SECRET_KEY)
     if (!(email && password)) {
       res.status(401).send("Email and Password is required");
     }
@@ -51,7 +51,7 @@ exports.login = async (req, res) => {
       res.status(400).send("Invalid Credentials");
     }
     if (user && (await bcrypt.compare(password, user.password))) {
-      const token = jwt.sign({ id: user._id, email }, process.env.SECRET_KEY, {
+      const token = jwt.sign({ id: user._id, email }, config.JWT_SECRET, {
         expiresIn: "3h",
       });
       user.password = undefined;
@@ -63,11 +63,12 @@ exports.login = async (req, res) => {
       res.status(200).cookie("token", token, options).json({
         success: true,
         token,
-        user
       })
 
       res.sendStatus(400).send("Email or password is is incorrect")
 
     }
-  } catch (error) {}
+  } catch (error) {
+    res.send("SOME ERROR")
+  }
 };

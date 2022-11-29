@@ -1,24 +1,19 @@
-const jwt = require("jsonwebtoken")
+const config = require( '../config/index')
+const jwt = require("jsonwebtoken");
 
-const auth = (req, res, next) => {
-    console.log(req.cookies);
-    const {token} = req.cookies
-    //check if token is present in cookies i.e person is logged in and token didnt expire
-    if(!token){
-        return res.status(403).send("Token is Missing")
-    }
-    //verification of token
-    try {
-        const decode = jwt.verify(token, process.env.SECRET_KEY)
-        console.log(decode)
-        req.user = decode
-    } catch (error) {
-        res.status(403).send("Token is Invalid")
-        
-    }
-    return next()
+const auth = (req, res) => {
+  const token = req.header("auth-token");
 
-}
+  if (!token) {
+    return res.status(401).json({ msg: "No token, Authentication Failed" });
+  }
+  try {
+    const decoded = jwt.verify(token, config.JWT_SECRET);
+    req.user = decoded.user
+    next();
+  } catch (error) {
+    res.status(401).json({ msg: "Token is not Valid" });
+  }
+};
 
-
-module.exports = auth
+module.exports = auth;
