@@ -1,21 +1,28 @@
 const Todo = require("../models/todoModel");
-const usersModel = require("../models/usersModel");
+const User = require("../models/usersModel");
 
 exports.createTodo = async (req, res) => {
   try {
-    const { title, task } = req.body;
-    const todo = await Todo.create({ title, task });
-    /* await todo.save() */
+    
+    const {title, task} = req.body
+    const todo = await Todo.create({
+      title,
+      task
+    })
     res.status(201).json({
       success: true,
-      message: "Todo created successfully",
+      message: "User Created Successfully",
       todo,
     });
-  } catch (error) {
+    //add fields for user id recognication to bind the stuff
+    ;
+   
+  } 
+  catch (error) {
     console.log(error);
     res.status(500).send("server erroR");
-  }
-};
+  } 
+}
 exports.getTodo = async (req, res) => {
   try {
     const todo = await Todo.find();
@@ -27,7 +34,7 @@ exports.getTodo = async (req, res) => {
 
 exports.updateTodo = async (req, res) => {
   try {
-    const todo = await Todo.findByIdAndUpdate(req.params.id, req.body );
+    const todo = await Todo.findByIdAndUpdate(req.params.id, req.body);
     res.status(200).json({
       success: true,
       message: "Todo updated Sucessfully",
@@ -49,13 +56,15 @@ exports.deleteTodo = async (req, res) => {
     res.status(200).json({
       success: true,
       message: "Todo Deleted Successfully",
-      todo
+      delete: todoId
     });
+    console.log(todoId)
   } catch (error) {
     console.log(error);
     res.status(401).json({
       success: false,
       message: error.message,
+     
     });
   }
 };
