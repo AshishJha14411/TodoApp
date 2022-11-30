@@ -1,4 +1,4 @@
-/* const User = require("../models/usersModel");
+const User = require("../models/usersModel");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const config = require( '../config/index')
@@ -31,7 +31,7 @@ exports.register = async (req, res) => {
     );
     user.token = token;
     user.password = undefined;
-    return res.json(user.token);
+    return res.json(user);
   } catch (error) {
     console.log(error);
   }
@@ -72,4 +72,3 @@ exports.login = async (req, res) => {
     res.send("SOME ERROR")
   }
 };
- */
