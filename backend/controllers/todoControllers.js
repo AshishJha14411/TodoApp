@@ -58,13 +58,11 @@ exports.deleteTodo = async (req, res) => {
       message: "Todo Deleted Successfully",
       delete: todoId
     });
-    console.log(todoId)
   } catch (error) {
     console.log(error);
     res.status(401).json({
       success: false,
       message: error.message,
-     
     });
   }
 };
