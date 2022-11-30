@@ -1,19 +1,29 @@
-const config = require( '../config/index')
-const jwt = require("jsonwebtoken");
+const jwt = require('jsonwebtoken')
 
-const auth = (req, res) => {
-  const token = req.header("auth-token");
+const auth = (req, res, next) => {
+    console.log(req.cookies);
+    const {token} = req.cookies
+    // Authorization: "Bearer longtokenvalue"
+    // const token = req.header("Authorization").replace("Bearer ", "")
 
-  if (!token) {
-    return res.status(401).json({ msg: "No token, Authentication Failed" });
-  }
-  try {
-    const decoded = jwt.verify(token, config.JWT_SECRET);
-    req.user = decoded.user
-    next();
-  } catch (error) {
-    res.status(401).json({ msg: "Token is not Valid" });
-  }
-};
 
-module.exports = auth;
+    //what if token is not there
+    if (!token) {
+        return res.status(403).send('token is missing')
+    }
+
+    //verify token
+    try {
+        const decode = jwt.verify(token, 'shhhhh')
+        console.log(decode);
+        req.user = decode
+
+        
+    } catch (error) {
+        res.status(403).send('token is invalid')
+    }
+
+    return next()
+}
+
+module.exports = auth

@@ -20,8 +20,11 @@ const userSchema = new mongoose.Schema({
     lastname:{
         type: String
     },
-    token: {
-        type: String
+    todos: {
+        type:[{
+            type: mongoose.Schema.Types.ObjectId,
+            required:[true, "Id is required to store data"]
+        }]
     }
 })
 
