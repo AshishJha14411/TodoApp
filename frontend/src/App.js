@@ -1,8 +1,9 @@
-import Home from "./components/Home";
+import TodoList from "./components/TodoList";
+
 function App() {
   return (
-    <div className="">
-        <Home />
+    <div className="flex justify-center">
+        <TodoList />
     </div>
   );
 }
