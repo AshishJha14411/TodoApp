@@ -7,29 +7,35 @@ const TodoList = () => {
 
   const fetchData = async () => {
     const resp = await axios.get("/getTodo");
-
-    setList(resp.data);
+    console.log(resp.data.length)
     // if No users are there please dont set the value
-  }; 
-  console.log(list)
+    if(resp.data.length > 0){
+      setList(resp.data);
+    }
+  };
   useEffect(() => {
     fetchData();
   }, []);
+  const deleteHandler = async (id) => {
+    const response  = await axios.delete(`/delete/${id}`)
+  }
   return (
     <>
-      <div>
+      <div className="w-4/5">
         <h1 className="text-[5rem] text-bold text-center mb-[2rem]">Todo List</h1>
         <AddTodo />
         {list &&
           list.map((todo) => (
-            <div className="flex flex-row justify-between" key={todo._id}>
+            <div className="flex flex-row flex-wrap justify-between" key={todo._id}>
               <div>
-              <ul className="w-4/5">{todo.title}</ul>
-              <li className="w-2/5">{todo.task}</li>
+              <ul className="w-3/5 flex-wrap">{todo.title}</ul>
+              <li className="w-3/5 flex-wrap">{todo.task}</li>
               </div>
               <div className="flex flex-row justify-between w-[8rem]">
               <button className="hover:text-[#49b591] ease-in duration-200 text-[1.5rem] mr-[1rem]">EDIT</button>
-              <button className="hover:text-[#d63737] ease-in duration-200 text-[1.5rem]">DELETE</button>
+              <button className="hover:text-[#d63737] ease-in duration-200 text-[1.5rem]"
+              onClick={() => deleteHandler(todo._id)}
+              >DELETE</button>
               </div>
             </div>
           ))}
