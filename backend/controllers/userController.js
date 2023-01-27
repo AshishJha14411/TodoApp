@@ -2,7 +2,7 @@ const User = require("../models/usersModel");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const config = require( '../config/index')
-
+const auth = require("../middleware/auth");
 exports.register = async (req, res) => {
   try {
     const { email, password, firstname, lastname } = req.body;
@@ -42,10 +42,10 @@ exports.login = async (req, res) => {
   try {
     //collected information
     const { email, password } = req.body;
-    console.log(process.env.SECRET_KEY)
     if (!(email && password)) {
       res.status(401).send("Email and Password is required");
     }
+  
     //
     const user = await User.findOne({ email });
     if (!user) {
@@ -65,8 +65,8 @@ exports.login = async (req, res) => {
         success: true,
         token,
       })
-
-      res.sendStatus(400).send("Email or password is is incorrect")
+/* 
+      res.sendStatus(400).send("Email or password is is incorrect") */
 
     }
   } catch (error) {

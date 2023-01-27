@@ -1,8 +1,10 @@
 const jwt = require('jsonwebtoken')
+const config = require('../config')
 
 const auth = (req, res, next) => {
-    console.log(req.cookies);
-    const {token} = req.cookies
+  
+    const token =  req.header('token')
+
     // Authorization: "Bearer longtokenvalue"
     // const token = req.header("Authorization").replace("Bearer ", "")
 
@@ -14,11 +16,12 @@ const auth = (req, res, next) => {
 
     //verify token
     try {
-        const decode = jwt.verify(token, 'shhhhh')
-        console.log(decode);
-        req.user = decode
+        const user = jwt.verify(token, config.JWT_SECRET)
+       
+        req.user ={
+            user_id:user.id
+        }
 
-        
     } catch (error) {
         res.status(403).send('token is invalid')
     }

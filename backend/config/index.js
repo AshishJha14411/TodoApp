@@ -3,7 +3,7 @@ const dotenv = require('dotenv');
 dotenv.config()
 
 const config = {
-    JWT_SECRET: process.env.SECREt_KEY,
+    JWT_SECRET: process.env.SECRET_KEY,
     MONGO_URI: process.env.MONGO_URI
 }
 
