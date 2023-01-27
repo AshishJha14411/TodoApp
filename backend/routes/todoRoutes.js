@@ -6,7 +6,7 @@ const auth = require("../middleware/auth");
 const router = express.Router();
 
 /* router.get("/ge", getTodo) */
-router.post("/createTodo",  createTodo)
+router.post("/createTodo", auth,  createTodo)
 router.get("/getTodo", getTodo)
 router.put("/Edit/:id", updateTodo)
 router.delete("/delete/:id", deleteTodo)
