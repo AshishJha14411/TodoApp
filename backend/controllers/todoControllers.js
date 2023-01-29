@@ -26,7 +26,7 @@ exports.createTodo = async (req, res) => {
 }
 exports.getTodo = async (req, res) => {
   try {
-    const todo = await Todo.find();
+    const todo = await Todo.find({user:req.user.user_id});
     return res.json(todo);
   } catch (error) {
     console.log(error);

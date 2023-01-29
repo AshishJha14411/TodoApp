@@ -7,9 +7,9 @@ const router = express.Router();
 
 /* router.get("/ge", getTodo) */
 router.post("/createTodo", auth,  createTodo)
-router.get("/getTodo", getTodo)
-router.put("/Edit/:id", updateTodo)
-router.delete("/delete/:id", deleteTodo)
+router.get("/getTodo",auth, getTodo)
+router.put("/Edit/:id",auth, updateTodo)
+router.delete("/delete/:id",auth, deleteTodo)
 
 router.post("/createUser", register)
 router.post("/login", login)
