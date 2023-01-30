@@ -4,7 +4,7 @@ const Register = () => {
     
 
   return (
-    <div className='bg-[#03203C] w-2/5 flex flex-col rounded-[4%] justify-center'>
+    <div className='bg-[#03203C] mt-[5rem] w-2/5 flex flex-col rounded-[4%] justify-center'>
         <p className='text-[3rem] text-center font-semibold text-white my-5'>Registration</p>
         <input 
         className='w-3/5 mx-auto my-4 p-3'

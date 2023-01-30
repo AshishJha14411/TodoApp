@@ -2,7 +2,7 @@ import React from "react";
 
 const Login = () => {
   return (
-    <div className="bg-[#03203C] w-2/5 flex flex-col rounded-[4%] justify-center">
+    <div className="bg-[#03203C] mt-[5rem] w-2/5 flex flex-col rounded-[4%] justify-center">
       <h1 className="text-[3rem] text-center font-bold text-white my-5">
         Login
       </h1>
