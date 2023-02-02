@@ -2,12 +2,15 @@ const Todo = require("../models/todoModel");
 const User = require("../models/usersModel");
 
 exports.createTodo = async (req, res) => {
+  const taskSpliter = (taskString) => {
+    return (taskString.split("- "))
+  }
   try {
     const user = req.user
     const {title, task} = req.body
     const todo = await Todo.create({
       title,
-      task,
+      task: taskSpliter(task),
       user: user.user_id
     })
     res.status(201).json({

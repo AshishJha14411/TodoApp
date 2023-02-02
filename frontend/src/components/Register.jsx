@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Register = () => {
     
@@ -23,6 +24,10 @@ const Register = () => {
         placeholder='Confirm Password'
         />
         <button className='w-2/5 mx-auto mb-6 p-4 text-white fond-extrabold bg-[#205e98] rounded-full text-xl hover:bg-[#517ded] hover:text-black ease-in duration-200'>Register</button>
+          <Link to='/login' >
+        <button className='w-2/5 ml-[30%] mb-6 p-4 text-white fond-extrabold bg-[#205e98] rounded-full text-xl hover:bg-[#517ded] hover:text-black ease-in duration-200'>
+          Login</button>
+          </Link>
     </div>
   )
 }

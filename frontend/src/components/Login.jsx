@@ -1,5 +1,6 @@
 import React from "react";
 
+import { Link } from 'react-router-dom'
 const Login = () => {
   return (
     <div className="bg-[#03203C] mt-[5rem] w-2/5 flex flex-col rounded-[4%] justify-center">
@@ -11,9 +12,10 @@ const Login = () => {
       <button className="w-2/5 mx-auto my-6 p-4 text-white fond-extrabold bg-[#207398] rounded-full text-xl hover:bg-[#51E1ED] hover:text-black ease-in duration-200">
         Login
       </button>
-      <button className="w-2/5 mx-auto mb-6 p-4 text-white fond-extrabold bg-[#205e98] rounded-full text-xl hover:bg-[#517ded] hover:text-black ease-in duration-200">
-        Register
-      </button>
+      <Link to='/' >
+        <button className='w-2/5 ml-[30%] mb-6 p-4 text-white fond-extrabold bg-[#205e98] rounded-full text-xl hover:bg-[#517ded] hover:text-black ease-in duration-200'>
+          Register</button>
+          </Link>
     </div>
   );
 };
