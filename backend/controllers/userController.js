@@ -12,7 +12,8 @@ exports.register = async (req, res) => {
     const userExists = await User.findOne({ email });
     if (userExists) {
       res.status(401).send("Email Address already has an account");
-    }
+    }else {
+    
     //hash(password, salt)
     const passEncrpt = await bcrypt.hash(password, 10);
     const user = await User.create({
@@ -32,7 +33,8 @@ exports.register = async (req, res) => {
     );
     user.token = token;
     user.password = undefined;
-    return res.json(user);
+    return res.json(user);  
+  }
   } catch (error) {
     console.log(error);
   }
