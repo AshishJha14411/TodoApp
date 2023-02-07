@@ -47,7 +47,6 @@ exports.login = async (req, res) => {
     if (!(email && password)) {
       res.status(401).send("Email and Password is required");
     }
-  
     //
     const user = await User.findOne({ email });
     if (!user) {
