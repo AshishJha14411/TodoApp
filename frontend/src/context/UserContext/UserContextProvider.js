@@ -6,10 +6,13 @@ const UserContextProvider = (props) => {
 
     const [isAuth, setIsAuth] = useState()
 
-    
+    const logoutHandler = () => {
+        setIsAuth("")
+        localStorage.removeItem("token")
+      }
 
 return (
-    <UserContext.Provider value={{isAuth,setIsAuth}}>
+    <UserContext.Provider value={{isAuth,setIsAuth,logoutHandler}}>
         {props.children}
     </UserContext.Provider>
 )
