@@ -2,20 +2,33 @@ import axios from "axios";
 import React from "react";
 import { useState } from "react";
 
+import { useContext } from 'react';
+import UserContext from '../context/UserContext/UserContext';
 const AddTodo = () => {
+    const {isAuth} = useContext(UserContext)
+
+
+
   const [title, setTitle] = useState("");
   const [task, setTask] = useState("");
   
   const storeData = async() => {
+    const headers = {
+      'Content-Type': 'application/json',
+      'token': isAuth
+    }
     const data = {
       title,
       task
     }
-    const res = await axios.post("/createTodo", data)
+    const res = await axios.post("http://localhost:4000/createTodo", data, {
+      headers
+    })
     console.log(res)
   }
 
 const addTodoHandler = (e) =>{
+  console.log(title,task)
   e.preventDefault()
   storeData()
   setTitle("")
@@ -26,13 +39,11 @@ const addTodoHandler = (e) =>{
       <input
         className="w-full mx-auto my-4 p-3"
         placeholder="Please Enter the Title"
-        value={title}
         onChange={(e) => setTitle(e.target.value)}
       />
       <textarea
         className="w-full mx-auto my-4 p-3"
         rows="10"
-        value={task}
         onChange={(e) => setTask(e.target.value)}
       />
       <button 

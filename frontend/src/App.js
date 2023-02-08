@@ -13,8 +13,8 @@ function App() {
           <NavBar />
           <Routes>
             <Route path="/" element={<TodoList />} />
-            <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
             <Route path="/addtodo" element={<AddTodo />} />
           </Routes>
         </BrowserRouter>
