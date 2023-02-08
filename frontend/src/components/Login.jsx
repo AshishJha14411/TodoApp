@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import axios from "axios";
 import { Link, useNavigate } from 'react-router-dom'
 import { useContext } from 'react';
@@ -8,9 +8,7 @@ const Login = () => {
   const {setIsAuth, isAuth} = useContext(UserContext)
   const navigate = useNavigate()
   
-  if(isAuth){
-    navigate('/')
-  }
+ 
 
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
@@ -25,6 +23,15 @@ const Login = () => {
     setIsAuth(localStorage.getItem("token"))
     console.log(localStorage.getItem("token"))
   }
+
+  useEffect(() => {
+    if(localStorage.getItem("token")){
+      navigate('/')
+    }
+  }, [localStorage.getItem("token")])
+
+
+
   return (
     <div className="bg-[#03203C] mt-[2rem] mx-auto w-2/5 flex flex-col rounded-[4%] justify-center">
       <h1 className="text-[3rem] text-center font-bold text-white my-5">
