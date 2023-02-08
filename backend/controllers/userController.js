@@ -71,6 +71,6 @@ exports.login = async (req, res) => {
 
     }
   } catch (error) {
-    res.send("SOME ERROR")
+    console.log(error)
   }
 };
