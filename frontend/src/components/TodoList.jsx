@@ -1,29 +1,53 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import axios from "axios";
 import { useEffect } from "react";
 import AddTodo from "./AddTodo";
+import UserContext from "../context/UserContext/UserContext";
+import { useNavigate } from "react-router-dom";
 const TodoList = () => {
   const [list, setList] = useState([]);
+  const [temp, setTemp] = useState()
+  const {isAuth} = useContext(UserContext)
+  const navigate = useNavigate()
 
   const fetchData = async () => {
-    const resp = await axios.get("/getTodo");
+    const headers = {
+      'Content-Type': 'application/json',
+      'token': isAuth
+    }
+    const resp = await axios.get("http://localhost:4000/getTodo", {
+      headers
+    });
     console.log(resp.data.length)
     // if No users are there please dont set the value
     if(resp.data.length > 0){
       setList(resp.data);
     }
-  };
-  useEffect(() => {
-    fetchData();
-  }, []);
-  const deleteHandler = async (id) => {
-    const response  = await axios.delete(`/delete/${id}`)
   }
+  
+ 
+  const deleteHandler = async (id) => {
+    const headers = {
+      'Content-Type': 'application/json',
+      'token': isAuth
+    }
+    const response  = await axios.delete(`http://localhost:4000/delete/${id}`, {
+      headers
+    })
+    setTemp(response)
+    console.log(temp)
+  }
+  useEffect(() => {
+    if(!localStorage.getItem("token")){
+      navigate('/login')
+    }
+    fetchData()
+  }, [temp]);
   return (
     <>
-      <div className="w-4/5">
+      <div className="w-4/5 mx-auto">
         <h1 className="text-[5rem] text-bold text-center mb-[2rem]">Todo List</h1>
-        <AddTodo />
+       
         {list &&
           list.map((todo) => (
             <div className="flex flex-row flex-wrap justify-between" key={todo._id}>
